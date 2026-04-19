@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적서/거래명세서</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="quotation-container">
+            <!-- Header Section -->
+            <div class="header">
+                <div class="title-selector">
+                    <button class="title-btn active" onclick="setTitle('견적서')">견적서</button>
+                    <button class="title-btn" onclick="setTitle('거래명세서')">거래명세서</button>
+                </div>
+                <h1 id="pageTitle">견적서</h1>
+            </div>
+
+            <!-- Top Information Section -->
+            <div class="info-section">
+                <div class="info-section-1">
+                    <div class="header-row">
+                        <label>날 짜</label>
+                        <input type="date" id="quotationDate" class="inline-input">
+                    </div>
+                    <div class="header-row">
+                        <input type="text" class="inline-input">
+                        <span class="guiha-label">귀하</span>
+                    </div>
+                </div>
+
+                <div class="supplier-section">
+                    <div class="supplier-title">공급자</div>
+                    <div class="supplier-content">
+                        <div class="supplier-row">
+                            <span class="label">사업자 번호</span>
+                            <input type="text" id="businessNumber" class="inline-input">
+                        </div>
+                        <div class="supplier-row company-row">
+                            <span class="label">상 호</span>
+                            <div class="company-input-wrapper">
+                                <input type="text" id="companyName" class="inline-input">
+                                <button class="stamp-btn" onclick="triggerStampUpload()">도장</button>
+                                <div id="stampContainer" class="stamp-container"></div>
+                            </div>
+                            <input type="file" id="stampInput" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="supplier-row">
+                            <span class="label">사업장 주소</span>
+                            <input type="text" id="businessAddress" class="inline-input">
+                        </div>
+                        <div class="supplier-row">
+                            <span class="label">성 명</span>
+                            <input type="text" id="representative" class="inline-input">
+                        </div>
+                        <div class="supplier-row-inline">
+                            <div class="supplier-row">
+                                <span class="label">업 태</span>
+                                <input type="text" id="businessType" class="inline-input">
+                            </div>
+                            <div class="supplier-row">
+                                <span class="label">종 목</span>
+                                <input type="text" id="category" class="inline-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Items Table -->
+            <div class="table-wrapper">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>날 짜</th>
+                            <th>품 목</th>
+                            <th>단 위</th>
+                            <th>수 량</th>
+                            <th>단 가</th>
+                            <th>금 액</th>
+                            <th>비 고</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsTableBody">
+                        <!-- Rows will be added here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Remarks Section -->
+            <div class="remarks-section">
+                <textarea id="bottomRemarks" class="remarks-input" placeholder="비고 입력"></textarea>
+            </div>
+
+            <!-- Total Section -->
+            <div class="total-section">
+                <div class="total-row">
+                    <span class="total-label">총액</span>
+                    <span class="total-display"><span id="finalTotal">0</span> 원    ( ※부가세 포함 )</span>
+                </div>
+            </div>
+
+            <!-- PDF Download Button -->
+            <div class="button-section">
+                <div class="tax-buttons">
+                    <button class="title-btn active" onclick="setTaxMode('included')">부가세포함</button>
+                    <button class="title-btn" onclick="setTaxMode('excluded')">부가세미포함</button>
+                </div>
+                <button class="pdf-btn" onclick="downloadPDF()">A5사이즈 PDF 다운로드</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
