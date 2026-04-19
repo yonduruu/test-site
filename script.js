@@ -202,9 +202,10 @@ function downloadPDF() {
     pageWrapper.style.height = '210mm';
     body.style.padding = '0';
 
+    const pageTitle = document.getElementById('pageTitle').textContent;
     const opt = {
         margin: 0,
-        filename: 'quotation.pdf',
+        filename: `${pageTitle}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
             scale: 2,
