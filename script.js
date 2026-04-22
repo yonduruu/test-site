@@ -184,6 +184,25 @@ function isMobile() {
 
 function downloadPDF() {
     if (isMobile()) {
+        const dateInputs = Array.from(document.querySelectorAll('input[type="date"]'));
+        const replacements = [];
+
+        dateInputs.forEach(input => {
+            const span = document.createElement('span');
+            span.textContent = input.value;
+            span.className = input.className;
+            input.parentNode.replaceChild(span, input);
+            replacements.push({ span, input });
+        });
+
+        const restore = function() {
+            replacements.forEach(({ span, input }) => {
+                if (span.parentNode) span.parentNode.replaceChild(input, span);
+            });
+            window.removeEventListener('afterprint', restore);
+        };
+
+        window.addEventListener('afterprint', restore);
         window.print();
         return;
     }
