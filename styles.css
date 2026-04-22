@@ -21,12 +21,12 @@ body {
 
 .quotation-container {
     width: 148mm;
-    height: 210mm;
+    height: auto;
     background-color: white;
     border: 1px solid #ddd;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 9mm;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -120,6 +120,8 @@ body {
 /* Supplier Section */
 .supplier-section {
     flex: 1;
+    min-width: 0;
+    overflow: hidden;
     border: 1.5px solid #000;
     padding: 3mm;
 }
@@ -149,6 +151,11 @@ body {
 .supplier-row.company-row {
     position: relative;
     align-items: flex-start;
+}
+
+.supplier-row-inline {
+    display: flex;
+    gap: 3mm;
 }
 
 .label {
@@ -466,3 +473,4 @@ body {
 .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+

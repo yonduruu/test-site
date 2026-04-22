@@ -202,10 +202,18 @@ function downloadPDF() {
     pageWrapper.style.height = '210mm';
     body.style.padding = '0';
 
+    // 파일명 생성: 문서명_날짜_시간
     const pageTitle = document.getElementById('pageTitle').textContent;
+    const dateInput = document.getElementById('quotationDate').value;
+    const now = new Date();
+    const timeStr = String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
+    const filename = dateInput
+        ? `${pageTitle}_${dateInput.replace(/-/g, '')}_${timeStr}.pdf`
+        : `${pageTitle}_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}_${timeStr}.pdf`;
+
     const opt = {
         margin: 0,
-        filename: `${pageTitle}.pdf`,
+        filename: filename,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
             scale: 2,
