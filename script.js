@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     addEventListeners();
     loadSupplierData();
     addSupplierSaveListeners();
+    if (isMobile()) {
+        document.querySelector('.pdf-btn').textContent = 'PDF 저장 (인쇄)';
+    }
 });
 
 // Set title
@@ -175,7 +178,16 @@ document.getElementById('stampInput').addEventListener('change', function(e) {
 });
 
 // PDF Download
+function isMobile() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || navigator.maxTouchPoints > 1;
+}
+
 function downloadPDF() {
+    if (isMobile()) {
+        window.print();
+        return;
+    }
+
     const element = document.querySelector('.quotation-container');
     const pageWrapper = document.querySelector('.page-wrapper');
     const body = document.body;

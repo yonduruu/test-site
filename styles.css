@@ -428,32 +428,35 @@ body {
 
 /* Print Styles */
 @media print {
+    @page {
+        size: A5 portrait;
+        margin: 0;
+    }
+
     body {
         background-color: white;
         padding: 0;
+        margin: 0;
     }
 
     .page-wrapper {
-        box-shadow: none;
+        display: block;
+        min-height: unset;
     }
 
     .quotation-container {
         box-shadow: none;
         border: none;
-        width: 100%;
-        height: 100%;
+        width: 148mm;
+        min-height: 210mm;
+        padding: 9mm;
     }
 
-    .title-selector {
-        display: none;
-    }
-
-    .stamp-btn {
-        display: none;
-    }
-
+    .title-selector,
+    .stamp-btn,
+    .stamp-delete,
     .button-section {
-        display: none;
+        display: none !important;
     }
 }
 
