@@ -110,7 +110,7 @@ function calculateRowAmount(row) {
     const quantity = parseFloat(row.querySelector('.quantity-field').value) || 0;
     const unitPrice = parseFloat(row.querySelector('.unit-price-field').value) || 0;
     const amount = quantity * unitPrice;
-    row.querySelector('.amount-display').textContent = amount.toFixed(0);
+    row.querySelector('.amount-display').textContent = amount > 0 ? amount.toFixed(0) : '';
 
     // 비고란 업데이트
     updateRemarksForRow(row);

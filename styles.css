@@ -458,6 +458,10 @@ body {
     .button-section {
         display: none !important;
     }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
 }
 
 /* Scrollbar styling */
