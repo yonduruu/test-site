@@ -155,7 +155,8 @@ body {
 
 .supplier-row-inline {
     display: flex;
-    gap: 3mm;
+    flex-direction: column;
+    gap: 1.2mm;
 }
 
 .label {
@@ -345,7 +346,7 @@ body {
 .remarks-section {
     padding: 1mm 0;
     margin-bottom: 5.5mm;
-    height: 90px;
+    height: 50px;
 }
 
 .remarks-input {
@@ -355,7 +356,7 @@ body {
     font-size: 10px;
     background-color: transparent;
     font-family: inherit;
-    height: 90px;
+    height: 50px;
     resize: none;
     line-height: 1.5;
 }
