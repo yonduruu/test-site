@@ -67,6 +67,7 @@ function setTitle(title) {
 // Set today's date
 function initializeDate() {
     const dateInput = document.getElementById('quotationDate');
+    if (isMobile()) dateInput.type = 'text';
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -77,10 +78,11 @@ function initializeDate() {
 // Add item rows
 function addItemRows(count) {
     const tbody = document.getElementById('itemsTableBody');
+    const dateType = isMobile() ? 'text' : 'date';
     for (let i = 0; i < count; i++) {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="date" class="date-field" value=""></td>
+            <td><input type="${dateType}" class="date-field" value=""></td>
             <td><input type="text" class="item-field" placeholder=""></td>
             <td><input type="text" class="unit-field" placeholder=""></td>
             <td><input type="number" class="quantity-field" placeholder="" value="" min="0" step="1"></td>
@@ -184,25 +186,6 @@ function isMobile() {
 
 function downloadPDF() {
     if (isMobile()) {
-        const dateInputs = Array.from(document.querySelectorAll('input[type="date"]'));
-        const replacements = [];
-
-        dateInputs.forEach(input => {
-            const span = document.createElement('span');
-            span.textContent = input.value;
-            span.className = input.className;
-            input.parentNode.replaceChild(span, input);
-            replacements.push({ span, input });
-        });
-
-        const restore = function() {
-            replacements.forEach(({ span, input }) => {
-                if (span.parentNode) span.parentNode.replaceChild(input, span);
-            });
-            window.removeEventListener('afterprint', restore);
-        };
-
-        window.addEventListener('afterprint', restore);
         window.print();
         return;
     }
