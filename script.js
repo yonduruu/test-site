@@ -186,7 +186,11 @@ function isMobile() {
 
 function downloadPDF() {
     if (isMobile()) {
-        window.print();
+        if (typeof window.print === 'function') {
+            setTimeout(() => window.print(), 100);
+        } else {
+            alert('브라우저 메뉴 > 인쇄 또는 공유 > PDF로 저장을 이용해주세요.');
+        }
         return;
     }
 
